@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios - Agencia de Viajes</title>
+    <style>
+        /* Estilos anteriores (se mantienen igual) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #111;
+            color: #fff;
+        }
+
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px 100px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            color: #ffffff;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            padding: 15px 35px;
+            margin: 10px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #ffffff;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+            transition: color 0.4s;
+        }
+
+        nav ul li::after {
+            content: '';
+            background: #ffffff;
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s, top 0.4s;
+        }
+
+        nav ul li:hover {
+            color: #069be0;
+        }
+
+        nav ul li:hover::after {
+            top: 50%;
+            opacity: 1;
+        }
+
+        .showcase {
+            position: absolute;
+            right: 0;
+            width: 100%;
+            min-height: 100vh;
+            padding: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #111;
+            transition: 0.5s;
+            z-index: 2;
+        }
+
+        .showcase video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #156275;
+            mix-blend-mode: overlay;
+        }
+
+        .text {
+            position: relative;
+            z-index: 10;
+        }
+
+        .text h1 {
+            font-size: 3em;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1em;
+            text-transform: uppercase;
+        }
+
+        .text p {
+            font-size: 1.1em;
+            color: #fff;
+            margin: 20px 0;
+            font-weight: 400;
+            max-width: 700px;
+        }
+
+        .servicios {
+            position: relative;
+            z-index: 10;
+            margin-top: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 700px;
+        }
+
+        .servicios ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .servicios ul li {
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 10px 0;
+            padding: 10px;
+            border-left: 4px solid #069be0;
+            border-radius: 4px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .servicios ul li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .servicios ul li strong {
+            color: #069be0;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            z-index: 10;
+        }
+
+        @media (max-width: 991px) {
+            .showcase, .showcase header {
+                padding: 40px;
+            }
+
+            .text h1 {
+                font-size: 2.5em;
+            }
+
+            nav ul li {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="showcase">
+        <header>
+            <h2 class="logo">PHOENIX</h2>
+            <div class="container">
+                <nav>
+                    <ul>
+                        <li><a href="INICIO.HTML">Inicio</a></li>
+                        <li><a href="SERVICIOS.HTML">Servicios</a></li>
+                        <li><a href="productos.html">Productos</a></li>
+                        <li><a href="CLIENTES.HTML">Clientes</a></li>
+                        <li><a href="CONTACTO.HTML">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <video src="video4.mp4" muted loop autoplay></video>
+        <div class="overlay"></div>
+        <div class="text">
+            <h1>Nuestros Servicios</h1>
+            <p>Ofrecemos una amplia gama de servicios para asegurar que tu experiencia de viaje sea inolvidable.</p>
+            <div class="servicios">
+                <!-- Campo de entrada para el lugar -->
+                <input type="text" id="lugar" placeholder="Ingresa el nombre del lugar" style="padding: 10px; width: 100%; margin-bottom: 10px;">
+                <!-- Botón para obtener detalles del lugar -->
+                <button onclick="obtenerDetallesLugar()">Obtener Detalles del Lugar</button>
+                <p id="resultado"></p>
+                <div id="detalles" style="margin-top: 20px;"></div> <!-- Para mostrar los detalles en español -->
+            </div>
+        </div>
+    </section>
+
+    
+
+    <script>
+        function obtenerDetallesLugar() {
+            const lugar = document.getElementById("lugar").value; // Obtiene el valor del input
+            if (!lugar) {
+                document.getElementById("resultado").textContent = "Por favor, ingresa un lugar.";
+                return;
+            }
+
+            const apiKey = "688740a773a44ded9ae88492fd781b62"; // Tu API Key de Geoapify
+            const url = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(lugar)}&apiKey=${apiKey}`;
+
+            var requestOptions = {
+                method: 'GET',
+            };
+
+            fetch(url, requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    document.getElementById("resultado").textContent = "Detalles del lugar obtenidos correctamente.";
+                    mostrarDetallesEnEspanol(result); // Mostrar los detalles en español
+                    console.log(result);
+                })
+                .catch(error => {
+                    document.getElementById("resultado").textContent = "Error al obtener los detalles del lugar.";
+                    console.error('error', error);
+                });
+        }
+
+        function mostrarDetallesEnEspanol(data) {
+            const detallesDiv = document.getElementById("detalles");
+            detallesDiv.innerHTML = ""; // Limpiar el contenido anterior
+
+            if (data.features && data.features.length > 0) {
+                const lugar = data.features[0].properties; // Tomar el primer resultado
+
+                // Traducir y mostrar los detalles
+                detallesDiv.innerHTML = `
+                    <h3>Detalles del Lugar</h3>
+                    <p><strong>Nombre:</strong> ${lugar.name || "No disponible"}</p>
+                    <p><strong>País:</strong> ${lugar.country || "No disponible"}</p>
+                    <p><strong>Región:</strong> ${lugar.region || "No disponible"}</p>
+                    <p><strong>Ciudad:</strong> ${lugar.city || "No disponible"}</p>
+                    <p><strong>Calle:</strong> ${lugar.street || "No disponible"}</p>
+                    <p><strong>Código Postal:</strong> ${lugar.postcode || "No disponible"}</p>
+                    <p><strong>Latitud:</strong> ${lugar.lat || "No disponible"}</p>
+                    <p><strong>Longitud:</strong> ${lugar.lon || "No disponible"}</p>
+                `;
+            } else {
+                detallesDiv.innerHTML = "<p>No se encontraron resultados para el lugar ingresado.</p>";
+            }
+        }
+    </script>
+</body>
+</html>

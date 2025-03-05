@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agencia de Viajes</title>
+    <style>
+        /* Estilos anteriores (se mantienen igual) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px 100px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            color: #ffffff;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .container {
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            padding: 15px 35px;
+            margin: 10px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #ffffff;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+            transition: color 0.4s;
+        }
+
+        nav ul li::after {
+            content: '';
+            background: #ffffff;
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s, top 0.4s;
+        }
+
+        nav ul li:hover {
+            color: #069be0;
+        }
+
+        nav ul li:hover::after {
+            top: 50%;
+            opacity: 1;
+        }
+
+        .showcase {
+            position: absolute;
+            right: 0;
+            width: 100%;
+            min-height: 100vh;
+            padding: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #111;
+            transition: 0.5s;
+            z-index: 2;
+        }
+
+        .showcase.active {
+            right: 300px;
+        }
+
+        .showcase video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #156275;
+            mix-blend-mode: overlay;
+        }
+
+        .text {
+            position: relative;
+            z-index: 10;
+        }
+
+        .text h2 {
+            font-size: 3em;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1em;
+            text-transform: uppercase;
+        }
+
+        .text h3 {
+            font-size: 5em;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1em;
+            text-transform: uppercase;
+        }
+
+        .text p {
+            font-size: 1.1em;
+            color: #fff;
+            margin: 20px 0;
+            font-weight: 400;
+            max-width: 700px;
+        }
+
+        .text a {
+            display: inline-block;
+            font-size: 1em;
+            background: #fff;
+            padding: 10px 30px;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 10px;
+            color: #111;
+            letter-spacing: 2px;
+            transition: 0.2s;
+        }
+
+        .text a:hover {
+            letter-spacing: 6px;
+        }
+
+        .social {
+            position: absolute;
+            z-index: 10;
+            bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .social li {
+            list-style: none;
+        }
+
+        .social li a {
+            display: inline-block;
+            margin-right: 20px;
+            filter: invert(1);
+            transform: scale(0.5);
+            transition: 0.5s;
+        }
+
+        .social li a:hover {
+            transform: scale(0.5) translateY(-15px);
+        }
+
+        /* Nuevos estilos para la sección de recomendaciones */
+        .recommendation-section {
+            position: relative;
+            z-index: 10;
+            margin-top: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 700px;
+        }
+
+        .recommendation-section h4 {
+            font-size: 1.5em;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .recommendation-section p {
+            font-size: 1em;
+            color: #fff;
+        }
+
+        .recommendation-section input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .recommendation-section button {
+            background: #069be0;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .recommendation-section button:hover {
+            background: #0578a8;
+        }
+
+        @media (max-width: 991px) {
+            .showcase, .showcase header {
+                padding: 40px;
+            }
+
+            .text h2 {
+                font-size: 2.5em;
+            }
+
+            .text h3 {
+                font-size: 3em;
+            }
+
+            nav ul li {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="showcase">
+        <header>
+            <h2 class="logo">PHOENIX</h2>
+            <div class="container">
+                <nav>
+                    <ul>
+                        <li><a href="INICIO.HTML">Inicio</a></li>
+                        <li><a href="SERVICIOS.HTML">Servicios</a></li>
+                        <li><a href="productos.html">Productos</a></li>
+                        <li><a href="CLIENTES.HTML">Clientes</a></li>
+                        <li><a href="CONTACTO.HTML">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <video src="video4.mp4" muted loop autoplay></video>
+        <div class="overlay"></div>
+        <div class="text">
+            <h2>AGENCIA</h2>
+            <h3>DE VIAJES</h3>
+            <p>Somos una Agencia de viajes que brinda los mejores servicios turísticos superando las expectativas de nuestros pasajeros, dando a conocer las riquezas de nuestro Perú y destinos exóticos internacionales.</p>
+            <a href="#">Explorar</a>
+
+            <!-- Sección de recomendaciones con IA -->
+            <div class="recommendation-section">
+                <h4>¿A dónde te gustaría viajar?</h4>
+                <input type="text" id="userInput" placeholder="Ej: playas, montañas, cultura...">
+                <button onclick="getRecommendation()">Obtener Recomendación</button>
+                <p id="recommendationResult"></p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Función para obtener recomendaciones usando la API de OpenAI
+        async function getRecommendation() {
+            const userInput = document.getElementById('userInput').value;
+            const resultElement = document.getElementById('recommendationResult');
+
+            if (!userInput) {
+                resultElement.textContent = "Por favor, ingresa tus preferencias.";
+                return;
+            }
+
+            resultElement.textContent = "Generando recomendación...";
+
+            try {
+                const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer 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'
+                    },
+                    body: JSON.stringify({
+                        model: "gpt-4",
+                        messages: [
+                            { role: "user", content: `Recomienda destinos de viaje para alguien que le gusta: ${userInput}` }
+                        ],
+                        max_tokens: 100
+                    })
+                });
+
+                const data = await response.json();
+                resultElement.textContent = data.choices[0].message.content.trim();
+            } catch (error) {
+                resultElement.textContent = "Error al obtener la recomendación. Intenta de nuevo.";
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+</html>

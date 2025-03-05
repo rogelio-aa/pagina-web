@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - Agencia de Viajes</title>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #111;
+            color: #fff;
+        }
+
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px 100px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            color: #ffffff;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            padding: 15px 35px;
+            margin: 10px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #ffffff;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+            transition: color 0.4s;
+        }
+
+        nav ul li::after {
+            content: '';
+            background: #ffffff;
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s, top 0.4s;
+        }
+
+        nav ul li:hover {
+            color: #069be0;
+        }
+
+        nav ul li:hover::after {
+            top: 50%;
+            opacity: 1;
+        }
+
+        .showcase {
+            position: absolute;
+            right: 0;
+            width: 100%;
+            min-height: 100vh;
+            padding: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #111;
+            transition: 0.5s;
+            z-index: 2;
+        }
+
+        .showcase video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #156275;
+            mix-blend-mode: overlay;
+        }
+
+        .text {
+            position: relative;
+            z-index: 10;
+        }
+
+        .text h1 {
+            font-size: 3em;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1em;
+            text-transform: uppercase;
+        }
+
+        .text p {
+            font-size: 1.1em;
+            color: #fff;
+            margin: 20px 0;
+            font-weight: 400;
+            max-width: 700px;
+        }
+
+        .productos {
+            position: relative;
+            z-index: 10;
+            margin-top: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 700px;
+        }
+
+        .categorias {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .categorias h2 {
+            font-size: 1.5em;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .categorias p {
+            font-size: 1em;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .categorias ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .categorias ul li a {
+            text-decoration: none;
+            color: #069be0;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: 2px solid #069be0;
+            border-radius: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .categorias ul li a:hover {
+            background-color: #069be0;
+            color: #fff;
+        }
+
+        #linternas, #anillos, #adaptadores {
+            margin-bottom: 30px;
+        }
+
+        #linternas h3, #anillos h3, #adaptadores h3 {
+            color: #069be0;
+            margin-bottom: 15px;
+        }
+
+        #linternas ul, #anillos ul, #adaptadores ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #linternas ul li, #anillos ul li, #adaptadores ul li {
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 10px 0;
+            padding: 10px;
+            border-left: 4px solid #069be0;
+            border-radius: 4px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #linternas ul li:hover, #anillos ul li:hover, #adaptadores ul li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            z-index: 10;
+        }
+
+        @media (max-width: 991px) {
+            .showcase, .showcase header {
+                padding: 40px;
+            }
+
+            .text h1 {
+                font-size: 2.5em;
+            }
+
+            nav ul li {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="showcase">
+        <header>
+            <h2 class="logo">PHOENIX</h2>
+            <div class="container">
+                <nav>
+                    <ul>
+                        <li><a href="INICIO.HTML">Inicio</a></li>
+                        <li><a href="SERVICIOS.HTML">Servicios</a></li>
+                        <li><a href="productos.html">Productos</a></li>
+                        <li><a href="CLIENTES.HTML">Clientes</a></li>
+                        <li><a href="CONTACTO.HTML">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <video src="video4.mp4" muted loop autoplay></video>
+        <div class="overlay"></div>
+        <div class="text">
+            <h1>Nuestros Productos</h1>
+            <p>Explora nuestros productos diseñados para satisfacer todas tus necesidades de viaje.</p>
+            <div class="productos">
+                <div class="categorias">
+                    <h2>Recomendaciones Personalizadas</h2>
+                    <p>Selecciona una categoría y te recomendaremos los mejores productos para ti.</p>
+                    <ul>
+                        <li><a href="#linternas">Linternas</a></li>
+                        <li><a href="#anillos">Anillos de Seguridad</a></li>
+                        <li><a href="#adaptadores">Adaptadores de Corriente</a></li>
+                    </ul>
+                </div>
+                <div id="linternas">
+                    <h3>Linternas</h3>
+                    <ul>
+                        <li>Linterna LED recargable</li>
+                        <li>Linterna de cabeza para manos libres</li>
+                        <li>Linterna compacta para emergencias</li>
+                    </ul>
+                </div>
+                <div id="anillos">
+                    <h3>Anillos de Seguridad</h3>
+                    <ul>
+                        <li>Anillo de seguridad con GPS</li>
+                        <li>Anillo de seguridad con alarma</li>
+                        <li>Anillo de seguridad con linterna integrada</li>
+                    </ul>
+                </div>
+                <div id="adaptadores">
+                    <h3>Adaptadores de Corriente</h3>
+                    <ul>
+                        <li>Adaptador universal con USB</li>
+                        <li>Adaptador de viaje compacto</li>
+                        <li>Adaptador de corriente para múltiples dispositivos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+</body>
+</html>

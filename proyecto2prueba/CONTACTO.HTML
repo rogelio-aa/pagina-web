@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Agencia de Viajes</title>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #111;
+            color: #fff;
+        }
+
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px 100px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            color: #ffffff;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            padding: 15px 35px;
+            margin: 10px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #ffffff;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+            transition: color 0.4s;
+        }
+
+        nav ul li::after {
+            content: '';
+            background: #ffffff;
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s, top 0.4s;
+        }
+
+        nav ul li:hover {
+            color: #069be0;
+        }
+
+        nav ul li:hover::after {
+            top: 50%;
+            opacity: 1;
+        }
+
+        .showcase {
+            position: absolute;
+            right: 0;
+            width: 100%;
+            min-height: 100vh;
+            padding: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #111;
+            transition: 0.5s;
+            z-index: 2;
+        }
+
+        .showcase video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #156275;
+            mix-blend-mode: overlay;
+        }
+
+        .text {
+            position: relative;
+            z-index: 10;
+        }
+
+        .text h1 {
+            font-size: 3em;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1em;
+            text-transform: uppercase;
+        }
+
+        .text p {
+            font-size: 1.1em;
+            color: #fff;
+            margin: 20px 0;
+            font-weight: 400;
+            max-width: 700px;
+        }
+
+        .contacto {
+            position: relative;
+            z-index: 10;
+            margin-top: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 700px;
+        }
+
+        .info-contacto p {
+            font-size: 1em;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .formulario-contacto {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .formulario-contacto label {
+            font-size: 1em;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .formulario-contacto input,
+        .formulario-contacto textarea {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .formulario-contacto button {
+            background: #069be0;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .formulario-contacto button:hover {
+            background: #0578a8;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            z-index: 10;
+        }
+
+        @media (max-width: 991px) {
+            .showcase, .showcase header {
+                padding: 40px;
+            }
+
+            .text h1 {
+                font-size: 2.5em;
+            }
+
+            nav ul li {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="showcase">
+        <header>
+            <h2 class="logo">PHOENIX</h2>
+            <div class="container">
+                <nav>
+                    <ul>
+                        <li><a href="INICIO.HTML">Inicio</a></li>
+                        <li><a href="SERVICIOS.HTML">Servicios</a></li>
+                        <li><a href="productos.html">Productos</a></li>
+                        <li><a href="CLIENTES.HTML">Clientes</a></li>
+                        <li><a href="CONTACTO.HTML">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <video src="video4.mp4" muted loop autoplay></video>
+        <div class="overlay"></div>
+        <div class="text">
+            <h1>Contáctanos</h1>
+            <p>Estamos aquí para ayudarte a planear tu próximo viaje. No dudes en ponerte en contacto con nosotros para cualquier consulta o reserva.</p>
+            <div class="contacto">
+                <div class="info-contacto">
+                    <p><strong>Dirección:</strong> Av. Principal 123, Lima, Perú</p>
+                    <p><strong>Teléfono:</strong> +51 123 456 789</p>
+                    <p><strong>Email:</strong> info@empresaagencia.com</p>
+                    <p><strong>Horario de Atención:</strong> Lunes a Viernes de 9:00 am a 6:00 pm</p>
+                </div>
+                <form id="formulario-contacto" class="formulario-contacto">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" required></textarea>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Empresa Agencia de Viajes. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.getElementById('formulario-contacto').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita que el formulario se envíe de la manera tradicional
+
+            const myHeaders = new Headers();
+            myHeaders.append("Authorization", "App e338f9818ed9ca19215eb23cc7c0bde2-be893464-3d31-4d13-821a-5fcb27f52279");
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Accept", "application/json");
+
+            const raw = JSON.stringify({
+                "messages": [
+                    {
+                        "from": "447860099299",
+                        "to": "51917206342",
+                        "messageId": "4db42ffb-0bf4-4c93-af3f-d936ec5be253",
+                        "content": {
+                            "templateName": "test_whatsapp_template_en",
+                            "templateData": {
+                                "body": {
+                                    "placeholders": ["Rogelio"]
+                                }
+                            },
+                            "language": "en"
+                        }
+                    }
+                ]
+            });
+
+            const requestOptions = {
+                method: "POST",
+                headers: myHeaders,
+                body: raw,
+                redirect: "follow"
+            };
+
+            fetch("https://5123rz.api.infobip.com/whatsapp/1/message/template", requestOptions)
+                .then((response) => response.text())
+                .then((result) => {
+                    console.log(result);
+                    alert('Mensaje enviado con éxito');
+                })
+                .catch((error) => {
+                    console.error(error);
+                    alert('Hubo un error al enviar el mensaje');
+                });
+        });
+    </script>
+</body>
+</html>
